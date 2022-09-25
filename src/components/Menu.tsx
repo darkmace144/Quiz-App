@@ -28,9 +28,10 @@ const Menu = (props: MenuProps) => {
     setUserAnswers,
     setNumber,
   } = props;
-  const [NameError, setNameError] = useState<string>('');
+  const [nameError, setNameError] = useState<string>('');
   const [categoryError, setCategoryError] = useState<string>('');
   const [categoryState, setCategoryState] = useState<string>('');
+
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
     setNameState(name);
@@ -71,15 +72,11 @@ const Menu = (props: MenuProps) => {
           onChange={handleName}
         />
         <div className="flex w-full  justify-between">
-          <span className="text-red-500 text-sm">{NameError}</span>
+          <span className="text-red-500 text-sm">{nameError}</span>
         </div>
       </div>
 
-      <CategoryCard
-        handleOnClick={handleCategoryOnClick}
-        categoryState={categoryState}
-        categoryError={categoryError}
-      />
+      <CategoryCard handleOnClick={handleCategoryOnClick} categoryError={categoryError} />
 
       <button
         className="flex flex-row w-full items-center justify-center space-x-1"

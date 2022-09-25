@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getCategories } from '../api/getCategories';
 
 type Props = {
-  categoryState: string;
   categoryError: string;
   handleOnClick: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
