@@ -30,8 +30,11 @@ const Quiz = ({
       </span>
       <h1 className="text-2xl py-5 font-bold" dangerouslySetInnerHTML={{ __html: question }}></h1>
 
-      {answers.map((answers) => (
-        <div className="flex w-full h-20 justify-center p-2" key={answers}>
+      {answers.map((answers, index) => (
+        <div
+          data-testid={`answers-${index}`}
+          className="flex w-full h-20 justify-center p-2"
+          key={index}>
           <button
             className={`border rounded-lg p-2 w-1/2 border-gray-300 bg-gray-200 hover:border-blue-300 hover:bg-blue-100 ${
               userAnswer?.correctAnswer === answers && 'bg-green-500 hover:bg-green-400'

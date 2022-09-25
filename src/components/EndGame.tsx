@@ -10,13 +10,14 @@ const EndGame = ({ score }: { score: number }): JSX.Element => {
   const handleStartOver = () => {
     window.location.reload();
   };
+
   const handleEndMessage = () => {
     if (score === 10) {
       return <Image src={'predator-arnold.gif'} />;
     } else if (score >= 4) {
       return <Image src={'steve-carell-the-office.gif'} />;
     } else if (score <= 3) {
-      return <Image src={'steve-carell-the-office.gif'} />;
+      return <Image src={'woah.gif'} />;
     }
   };
   return (
