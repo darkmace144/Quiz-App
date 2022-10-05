@@ -1,7 +1,7 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 import { GameState } from '../enums/GameState';
 
-export type GameStateContextType = {
+type GameStateContextType = {
   gameState: GameState;
   setGameState: (GameState: GameState) => void;
   nameState: string;
@@ -14,5 +14,3 @@ export const GameStateContext = createContext<GameStateContextType>({
   nameState: 'Player',
   setNameState: () => console.warn('no player selected'),
 });
-
-export const useQuiz = () => useContext(GameStateContext);

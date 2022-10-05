@@ -19,7 +19,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(1);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(30);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
 
@@ -64,8 +64,7 @@ const HomePage = () => {
         {gameState === GameState.Quiz && (
           <Timer timer={timer} setTimer={setTimer} setGameState={setGameState} />
         )}
-        <div
-          className={`flex flex-col bg-gray-100 w-1/2 h-[35rem] p-4 rounded-xl shadow-lg animate-wiggle relative`}>
+        <div className="flex flex-col bg-gray-100 w-1/2 h-[35rem] p-4 rounded-xl shadow-lg animate-wiggle relative">
           <div className="flex flex-col w-full h-full text-center items-center">
             <h1 className="font-semibold text-3xl">Quiz App</h1>
             {gameState === GameState.Menu && (
