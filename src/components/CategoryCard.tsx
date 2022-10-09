@@ -9,20 +9,16 @@ type CategoryCardProps = {
 const CategoryCard = ({ handleOnClick, categoryError }: CategoryCardProps) => {
   const [category, setCategory] = useState<string[]>([]);
 
-  const fetchCategory = async () => {
-    try {
-      setCategory(await getCategories());
-    } catch (err) {
-      console.error(err);
-    }
-  };
   useEffect(() => {
+    const fetchCategory = async () => {
+      setCategory(await getCategories());
+      console.log(category);
+    };
     fetchCategory();
   }, []);
 
   return (
     <div className="flex flex-col w-full justify-center items-center space-y-3">
-      <h4>Select an category: </h4>
       <div className="flex flex-col space-y-2">
         <select
           defaultValue={'DEFAULT'}

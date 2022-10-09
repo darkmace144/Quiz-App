@@ -1,10 +1,11 @@
-const EndGame = ({ score }: { score: number }): JSX.Element => {
+import { GameStateContext } from '../helpers/Contexts';
+import React, { useContext } from 'react';
+
+const EndGame = (): JSX.Element => {
+  const { score } = useContext(GameStateContext);
+
   const Image = ({ src }: { src: string }) => {
-    return (
-      <div>
-        <img className="rounded pb-5" src={require(`../img/${src}`)} alt="gif" />
-      </div>
-    );
+    return <img className="rounded pb-5" src={require(`../img/${src}`)} alt="gif" />;
   };
 
   const handleStartOver = () => {

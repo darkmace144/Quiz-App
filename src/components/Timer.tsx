@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GameState } from '../enums/GameState';
+import { GameStateContext } from '../helpers/Contexts';
 
-type TimerProps = {
-  timer: number;
-  setTimer: React.Dispatch<React.SetStateAction<number>>;
-  setGameState: React.Dispatch<React.SetStateAction<GameState>>;
-};
+const Timer = () => {
+  const { setGameState, timer, setTimer } = useContext(GameStateContext);
 
-const Timer = ({ timer, setTimer, setGameState }: TimerProps) => {
   useEffect(() => {
     if (timer === 0) return setGameState(GameState.EndGame);
     const interval = setInterval(() => {

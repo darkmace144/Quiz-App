@@ -1,59 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlinePlayCircle } from 'react-icons/ai';
-import { fetchQuestions } from '../api/getQuestions';
 import { GameState } from '../enums/GameState';
-import { QuestionState } from '../enums/QuestionTypes';
-import { AnswerObject } from '../pages/Home';
+import { GameStateContext } from '../helpers/Contexts';
 import CategoryCard from './CategoryCard';
 
-type MenuProps = {
-  nameState: string;
-  setNameState: React.Dispatch<React.SetStateAction<string>>;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setGameState: React.Dispatch<React.SetStateAction<GameState>>;
-  setQuestions: React.Dispatch<React.SetStateAction<QuestionState[]>>;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
-  setUserAnswers: React.Dispatch<React.SetStateAction<AnswerObject[]>>;
-  setNumber: React.Dispatch<React.SetStateAction<number>>;
-};
-
-const Menu = (props: MenuProps) => {
-  const {
-    nameState,
-    setNameState,
-    setGameState,
-    setLoading,
-    setQuestions,
-    setScore,
-    setUserAnswers,
-    setNumber,
-  } = props;
+const Menu = () => {
+  const { nameState, setGameState, setNameState, categoryState, setCategoryState } =
+    useContext(GameStateContext);
   const [nameError, setNameError] = useState<string>('');
   const [categoryError, setCategoryError] = useState<string>('');
-  const [categoryState, setCategoryState] = useState<string>('');
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
     setNameState(name);
   };
 
-  const handleStartGame = async () => {
+  const handleStartGame = () => {
     if (nameState.length === 0) setNameError('Please Enter Name');
     else if (categoryState.length === 0) setCategoryError('Please Select Category');
     else {
       setGameState(GameState.Quiz);
-      try {
-        setLoading(true);
-        setQuestions(await fetchQuestions(categoryState));
-        setScore(0);
-        setUserAnswers([]);
-        setNumber(0);
-        setLoading(false);
-        setNameError('');
-        setCategoryError('');
-      } catch (error) {
-        console.error(error);
-      }
+      setNameError('');
+      setCategoryError('');
     }
   };
   const handleCategoryOnClick = (e: React.ChangeEvent<HTMLSelectElement>) => {
